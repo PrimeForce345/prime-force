@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prime Force – Serviços Integrados</title>
+<meta name="description" content="Prime Force Serviços Integrados – Segurança Patrimonial, Portaria, Recepção, Limpeza, Apoio Operacional e Serviços Terceirizados. Excelência, Segurança e Confiança.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:       #C9A84C;
+    --gold-light: #E4C46A;
+    --gold-dark:  #9A7730;
+    --black:      #0A0A0A;
+    --dark:       #111111;
+    --card-bg:    #161616;
+    --border:     #222222;
+    --white:      #FFFFFF;
+    --silver:     #C8C8C8;
+    --text:       #B0B0B0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .display {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: var(--gold);
+  }
+
+  /* ── UTILITIES ── */
+  .gold { color: var(--gold); }
+  .silver { color: var(--silver); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+  .flex-center { display: flex; align-items: center; justify-content: center; }
+  .flex-between { display: flex; align-items: center; justify-content: space-between; }
+
+  /* ── GOLD LINE DIVIDER ── */
+  .gold-line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0 24px;
+  }
+  .gold-line::before,
+  .gold-line::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .gold-line span {
+    color: var(--gold);
+    font-size: 1rem;
+  }
+
+  /* ══════════════════════════════════════════
+     NAV
+  ══════════════════════════════════════════ */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.96);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 32px rgba(201,168,76,0.15); }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo svg { width: 36px; height: 36px; }
+  .nav-logo-text { line-height: 1.1; }
+  .nav-logo-text .prime {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: 0.1em;
+    color: var(--silver);
+  }
+  .nav-logo-text .force {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.15rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+  }
+  .nav-logo-text .sub {
+    font-size: 0.5rem;
+    letter-spacing: 0.25em;
+    color: var(--text);
+    text-transform: uppercase;
+  }
+
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text);
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold);
+    color: var(--black) !important;
+    padding: 8px 20px;
+    border-radius: 2px;
+    font-weight: 700 !important;
+    transition: background .2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--black) !important; }
+
+  /* ══════════════════════════════════════════
+     HERO
+  ══════════════════════════════════════════ */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 64px;
+    position: relative;
+    overflow: hidden;
+    background: var(--black);
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+
+  /* Animated diagonal lines */
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .hero-lines::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 40%;
+    width: 1px;
+    height: 200%;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.15), transparent);
+    transform: rotate(25deg);
+    animation: linePulse 4s ease-in-out infinite;
+  }
+  .hero-lines::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 55%;
+    width: 1px;
+    height: 200%;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.08), transparent);
+    transform: rotate(25deg);
+    animation: linePulse 4s ease-in-out infinite 1.5s;
+  }
+  @keyframes linePulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+  }
+
+  .hero-text .eyebrow {
+    display: inline-block;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    margin-bottom: 24px;
+  }
+
+  .hero-text h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-text h1 .line1 { color: var(--silver); display: block; }
+  .hero-text h1 .line2 {
+    color: var(--gold);
+    display: block;
+    text-shadow: 0 0 40px rgba(201,168,76,0.4);
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text);
+    max-width: 440px;
+    margin-bottom: 40px;
+  }
+
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background .2s, transform .2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 13px 32px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: border-color .2s, color .2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Hero shield visual */
+  .hero-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .shield-wrap {
+    position: relative;
+    width: 340px;
+    height: 340px;
+  }
+  .shield-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+    animation: ringPulse 3s ease-in-out infinite;
+  }
+  .shield-ring:nth-child(2) {
+    inset: 20px;
+    animation-delay: 0.5s;
+    border-color: rgba(201,168,76,0.1);
+  }
+  .shield-ring:nth-child(3) {
+    inset: 40px;
+    animation-delay: 1s;
+    border-color: rgba(201,168,76,0.08);
+  }
+  @keyframes ringPulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.02); opacity: 1; }
+  }
+  .shield-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .shield-svg { width: 200px; height: auto; filter: drop-shadow(0 0 40px rgba(201,168,76,0.5)); }
+
+  /* Hero stats */
+  .hero-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text);
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* ══════════════════════════════════════════
+     SERVICES
+  ══════════════════════════════════════════ */
+  #servicos {
+    padding: 100px 0;
+    background: var(--dark);
+  }
+
+  .section-header { text-align: center; margin-bottom: 64px; }
+  .section-header h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+  .section-header p { color: var(--text); max-width: 560px; margin: 0 auto; line-height: 1.7; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .service-card {
+    background: var(--card-bg);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background .3s;
+    cursor: default;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s;
+  }
+  .service-card:hover { background: #1a1a1a; }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 52px;
+    height: 52px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+  }
+  .service-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .service-card p { font-size: 0.875rem; line-height: 1.65; color: var(--text); }
+
+  /* ══════════════════════════════════════════
+     DIFERENCIAIS
+  ══════════════════════════════════════════ */
+  #diferenciais {
+    padding: 100px 0;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+  #diferenciais::before {
+    content: '';
+    position: absolute;
+    left: -200px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .diff-text h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+    line-height: 1.05;
+  }
+  .diff-text p { color: var(--text); line-height: 1.7; margin-bottom: 32px; }
+
+  .diff-list { display: flex; flex-direction: column; gap: 20px; }
+  .diff-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    transition: border-left-color .2s;
+  }
+  .diff-item:hover { border-left-color: var(--gold-light); }
+  .diff-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: rgba(201,168,76,0.3);
+    min-width: 40px;
+    line-height: 1;
+    margin-top: 2px;
+  }
+  .diff-item h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: var(--white);
+  }
+  .diff-item p { font-size: 0.8rem; color: var(--text); line-height: 1.5; margin: 0; }
+
+  /* Certifications panel */
+  .cert-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 40px;
+    position: relative;
+  }
+  .cert-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  }
+  .cert-panel .label { margin-bottom: 24px; display: block; }
+  .cert-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .cert-sub { font-size: 0.85rem; color: var(--text); margin-bottom: 32px; }
+
+  .cert-items { display: flex; flex-direction: column; gap: 12px; }
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--text);
+  }
+  .cert-icon { color: var(--gold); font-size: 1rem; }
+
+  /* ══════════════════════════════════════════
+     NUMBERS
+  ══════════════════════════════════════════ */
+  #numeros {
+    padding: 80px 0;
+    background: var(--gold);
+  }
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    divide-x: var(--black);
+    text-align: center;
+  }
+  .num-item {
+    padding: 20px;
+    border-right: 1px solid rgba(0,0,0,0.2);
+  }
+  .num-item:last-child { border-right: none; }
+  .num-big {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--black);
+    display: block;
+  }
+  .num-desc {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.6);
+    margin-top: 8px;
+    display: block;
+  }
+
+  /* ══════════════════════════════════════════
+     SOBRE
+  ══════════════════════════════════════════ */
+  #sobre {
+    padding: 100px 0;
+    background: var(--dark);
+  }
+  .sobre-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .sobre-text h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 24px;
+    line-height: 1.05;
+  }
+  .sobre-text p { color: var(--text); line-height: 1.7; margin-bottom: 16px; }
+  .sobre-text p:last-of-type { margin-bottom: 32px; }
+
+  .valores-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .valor-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--gold);
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .valor-icon { font-size: 1.5rem; margin-bottom: 8px; display: block; }
+  .valor-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* Mission panels */
+  .mission-panels { display: flex; flex-direction: column; gap: 16px; }
+  .mission-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .mission-panel::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 60px; height: 60px;
+    background: rgba(201,168,76,0.04);
+    border-radius: 50% 0 0 0;
+  }
+  .mission-panel h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .mission-panel p { font-size: 0.875rem; color: var(--text); line-height: 1.6; }
+
+  /* ══════════════════════════════════════════
+     CONTACT
+  ══════════════════════════════════════════ */
+  #contato {
+    padding: 100px 0;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+  #contato::after {
+    content: '';
+    position: absolute;
+    right: -200px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .contact-info h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+    line-height: 1.05;
+  }
+  .contact-info p { color: var(--text); line-height: 1.7; margin-bottom: 40px; }
+
+  .contact-methods { display: flex; flex-direction: column; gap: 16px; }
+  .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color .2s;
+  }
+  .contact-method:hover { border-color: var(--gold); }
+  .contact-method-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .contact-method-text { flex: 1; }
+  .contact-method-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .contact-method-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--white);
+    letter-spacing: 0.03em;
+  }
+
+  /* Contact Form */
+  .contact-form { position: relative; z-index: 1; }
+  .contact-form h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.875rem;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color .2s;
+    -webkit-appearance: none;
+  }
+  .form-group select { cursor: pointer; }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: none;
+    padding: 16px;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+    margin-top: 8px;
+  }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* ══════════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════════ */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    padding: 60px 0 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+  .footer-brand .nav-logo { margin-bottom: 16px; }
+  .footer-brand p { font-size: 0.825rem; color: var(--text); line-height: 1.7; max-width: 300px; }
+  .footer-brand .tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 16px;
+    display: block;
+  }
+
+  .footer-col h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a {
+    font-size: 0.825rem;
+    color: var(--text);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .footer-col ul li a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-bottom p { font-size: 0.75rem; color: var(--text); }
+  .footer-bottom .ft-gold { color: var(--gold); }
+
+  /* ══════════════════════════════════════════
+     WHATSAPP FLOAT
+  ══════════════════════════════════════════ */
+  .wa-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 200;
+    width: 56px;
+    height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 24px rgba(37,211,102,0.6); }
+  .wa-float svg { width: 28px; height: 28px; fill: white; }
+
+  /* ══════════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════════ */
+  @media (max-width: 900px) {
+    .hero-content,
+    .diff-grid,
+    .sobre-grid,
+    .contact-grid,
+    .grid-2 { grid-template-columns: 1fr; gap: 48px; }
+
+    .hero-visual { display: none; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .numbers-grid { grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.2); }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .nav-links { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    .valores-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .valores-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: column; gap: 24px; }
+  }
+
+  /* ══════════════════════════════════════════
+     SCROLL ANIMATIONS
+  ══════════════════════════════════════════ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <svg viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Crown -->
+        <path d="M6 10 L10 16 L18 10 L26 16 L30 10 L28 18 H8 Z" fill="#C9A84C"/>
+        <!-- Shield -->
+        <path d="M4 18 L4 30 Q4 38 18 42 Q32 38 32 30 L32 18 Z" fill="none" stroke="#C9A84C" stroke-width="2.5"/>
+        <!-- PF letters simplified -->
+        <text x="9" y="34" font-family="Arial" font-weight="900" font-size="13" fill="#C9A84C">PF</text>
+      </svg>
+      <div class="nav-logo-text">
+        <div><span class="prime">PRIME </span><span class="force">FORCE</span></div>
+        <div class="sub">Serviços Integrados</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#diferenciais">Diferenciais</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <span class="eyebrow">✦ Segurança &amp; Excelência ✦</span>
+      <h1>
+        <span class="line1">Protegemos</span>
+        <span class="line2">o que importa</span>
+      </h1>
+      <div class="gold-line"><span>◆</span></div>
+      <p>A Prime Force oferece soluções integradas de segurança patrimonial, portaria, recepção corporativa, limpeza e apoio operacional — com profissionalismo e comprometimento que fazem a diferença.</p>
+      <div class="hero-btns">
+        <a href="#contato" class="btn-primary">Solicitar Proposta</a>
+        <a href="#servicos" class="btn-outline">Nossos Serviços</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span class="stat-num">10+</span>
+          <span class="stat-label">Anos de mercado</span>
+        </div>
+        <div>
+          <span class="stat-num">500+</span>
+          <span class="stat-label">Colaboradores ativos</span>
+        </div>
+        <div>
+          <span class="stat-num">100+</span>
+          <span class="stat-label">Clientes atendidos</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="shield-wrap">
+        <div class="shield-ring"></div>
+        <div class="shield-ring"></div>
+        <div class="shield-ring"></div>
+        <div class="shield-center">
+          <svg class="shield-svg" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Crown -->
+            <path d="M50 38 L64 56 L100 38 L136 56 L150 38 L143 62 H57 Z" fill="url(#goldGrad)" opacity="0.9"/>
+            <circle cx="50" cy="35" r="5" fill="url(#goldGrad)"/>
+            <circle cx="100" cy="30" r="6" fill="url(#goldGrad)"/>
+            <circle cx="150" cy="35" r="5" fill="url(#goldGrad)"/>
+            <!-- Shield body -->
+            <path d="M24 62 L24 140 Q24 190 100 210 Q176 190 176 140 L176 62 Z" fill="url(#shieldGrad)" stroke="url(#goldGrad)" stroke-width="3"/>
+            <!-- Center divider line -->
+            <line x1="100" y1="62" x2="100" y2="210" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.4"/>
+            <!-- PF Monogram -->
+            <text x="100" y="160" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="72" fill="url(#goldGrad)" letter-spacing="-4">PF</text>
+            <defs>
+              <linearGradient id="goldGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#E4C46A"/>
+                <stop offset="50%" stop-color="#C9A84C"/>
+                <stop offset="100%" stop-color="#9A7730"/>
+              </linearGradient>
+              <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="rgba(201,168,76,0.12)"/>
+                <stop offset="100%" stop-color="rgba(201,168,76,0.03)"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══════════════════════════════════════════ -->
+<section id="servicos">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">O que oferecemos</span>
+      <div class="gold-line"><span>◆</span></div>
+      <h2>Nossos <span class="gold">Serviços</span></h2>
+      <p>Soluções completas para segurança, gestão de pessoas e suporte operacional, adaptadas à realidade de cada cliente.</p>
+    </div>
+
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <h3>Segurança Patrimonial</h3>
+        <p>Vigilância profissional 24h para proteção de patrimônio, pessoas e instalações. Equipes treinadas com rigoroso protocolo de segurança.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚪</div>
+        <h3>Portaria e Controle de Acesso</h3>
+        <p>Gestão eficiente de entradas e saídas com controle de visitantes, veículos e colaboradores, garantindo ordem e segurança nos acessos.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💼</div>
+        <h3>Recepção Corporativa</h3>
+        <p>Atendimento presencial de excelência para recepcionar clientes e parceiros com postura, elegância e profissionalismo.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">✨</div>
+        <h3>Limpeza e Conservação</h3>
+        <p>Serviços de higienização e conservação de ambientes corporativos, industriais e comerciais com equipes especializadas e produtos de qualidade.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>Apoio Operacional</h3>
+        <p>Suporte operacional completo para manter o funcionamento eficiente das operações, com equipes multifuncionais e ágeis.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>Serviços Terceirizados</h3>
+        <p>Terceirização estratégica de mão de obra qualificada, com gestão completa de RH, reduzindo custos e otimizando resultados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ NUMBERS ══════════════════════════════════════════ -->
+<section id="numeros">
+  <div class="container">
+    <div class="numbers-grid">
+      <div class="num-item">
+        <span class="num-big">10+</span>
+        <span class="num-desc">Anos de experiência</span>
+      </div>
+      <div class="num-item">
+        <span class="num-big">500+</span>
+        <span class="num-desc">Profissionais ativos</span>
+      </div>
+      <div class="num-item">
+        <span class="num-big">100+</span>
+        <span class="num-desc">Contratos ativos</span>
+      </div>
+      <div class="num-item">
+        <span class="num-big">6</span>
+        <span class="num-desc">Linhas de serviço</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DIFERENCIAIS ══════════════════════════════════════════ -->
+<section id="diferenciais">
+  <div class="container">
+    <div class="diff-grid">
+      <div class="diff-text reveal">
+        <span class="label">Por que a Prime Force?</span>
+        <div class="gold-line"><span>◆</span></div>
+        <h2>Mais do que<br><span class="gold">segurança,</span><br>resultados</h2>
+        <p>Na Prime Force, não entregamos apenas serviços — entregamos tranquilidade, eficiência e parceria real. Cada contrato é tratado com dedicação exclusiva e foco total em resultados.</p>
+
+        <div class="diff-list">
+          <div class="diff-item">
+            <span class="diff-num">01</span>
+            <div>
+              <h4>Profissionais Certificados</h4>
+              <p>Equipe formada, treinada e com habilitação legal para cada função, conforme exigido pela legislação vigente.</p>
+            </div>
+          </div>
+          <div class="diff-item">
+            <span class="diff-num">02</span>
+            <div>
+              <h4>Gestão Transparente</h4>
+              <p>Relatórios periódicos, ponto de contato dedicado e prestação de contas clara para você acompanhar cada detalhe.</p>
+            </div>
+          </div>
+          <div class="diff-item">
+            <span class="diff-num">03</span>
+            <div>
+              <h4>Resposta Ágil</h4>
+              <p>Suporte 24 horas e equipes de reforço disponíveis para emergências e demandas de última hora.</p>
+            </div>
+          </div>
+          <div class="diff-item">
+            <span class="diff-num">04</span>
+            <div>
+              <h4>Conformidade Legal Total</h4>
+              <p>Cumprimento rigoroso de todas as obrigações trabalhistas, previdenciárias e regulatórias, sem surpresas para o cliente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-panel reveal">
+        <span class="label">Compromissos e Certificações</span>
+        <div class="cert-title">Padrão</div>
+        <div class="cert-title gold">Prime Force</div>
+        <p class="cert-sub">Cada profissional e cada processo seguem os mais altos padrões do mercado.</p>
+
+        <div class="cert-items">
+          <div class="cert-item">
+            <span class="cert-icon">✔</span>
+            Vigilantes com Certificação CAESP
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">✔</span>
+            Treinamento contínuo e reciclagem periódica
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">✔</span>
+            Uniforme padronizado e identificação visual
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">✔</span>
+            Seguro de responsabilidade civil
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">✔</span>
+            Compliance trabalhista e previdenciário
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">✔</span>
+            Avaliação psicológica e antecedentes criminais
+          </div>
+          <div class="cert-item">
+            <span class="cert-icon">✔</span>
+            Supervisão presencial e remota
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SOBRE ══════════════════════════════════════════ -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-text reveal">
+        <span class="label">Quem somos</span>
+        <div class="gold-line"><span>◆</span></div>
+        <h2>Tradição em <span class="gold">Serviços Integrados</span></h2>
+        <p>A Prime Force Serviços Integrados nasceu da visão de oferecer ao mercado uma solução completa e confiável de serviços terceirizados, reunindo segurança, limpeza, recepção e apoio operacional sob uma única gestão de excelência.</p>
+        <p>Com mais de uma década de atuação, desenvolvemos expertise em diferentes segmentos — empresarial, industrial, hospitalar, educacional e comercial — adaptando nossas soluções às necessidades específicas de cada cliente.</p>
+
+        <div class="valores-grid" style="margin-top:32px;">
+          <div class="valor-box">
+            <span class="valor-icon">🏆</span>
+            <span class="valor-name">Excelência</span>
+          </div>
+          <div class="valor-box">
+            <span class="valor-icon">🛡️</span>
+            <span class="valor-name">Segurança</span>
+          </div>
+          <div class="valor-box">
+            <span class="valor-icon">🤝</span>
+            <span class="valor-name">Confiança</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mission-panels reveal">
+        <div class="mission-panel">
+          <h4>🎯 Missão</h4>
+          <p>Oferecer serviços integrados de alta qualidade com profissionais capacitados, gerando valor real para nossos clientes por meio de soluções eficientes, seguras e personalizadas.</p>
+        </div>
+        <div class="mission-panel">
+          <h4>👁️ Visão</h4>
+          <p>Ser reconhecida como referência nacional em serviços terceirizados integrados, destacando-se pela excelência operacional, inovação e comprometimento com resultados sustentáveis.</p>
+        </div>
+        <div class="mission-panel">
+          <h4>💎 Valores</h4>
+          <p>Ética e transparência em todas as relações. Comprometimento com clientes e colaboradores. Valorização humana, responsabilidade social e busca constante pela melhoria contínua.</p>
+        </div>
+        <div class="mission-panel" style="background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.25);">
+          <h4>🏢 Segmentos atendidos</h4>
+          <p>Empresas corporativas, condomínios residenciais e comerciais, indústrias, hospitais e clínicas, instituições de ensino, shopping centers e eventos.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTATO ══════════════════════════════════════════ -->
+<section id="contato">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="label">Entre em contato</span>
+        <div class="gold-line"><span>◆</span></div>
+        <h2>Solicite sua <span class="gold">Proposta</span></h2>
+        <p>Nossa equipe comercial está pronta para apresentar a solução ideal para o seu negócio. Conte com atendimento rápido, transparente e personalizado.</p>
+
+        <div class="contact-methods">
+          <a href="https://wa.me/5500000000000" class="contact-method" target="_blank">
+            <div class="contact-method-icon">📱</div>
+            <div class="contact-method-text">
+              <span class="contact-method-label">WhatsApp</span>
+              <span class="contact-method-val">(00) 00000-0000</span>
+            </div>
+          </a>
+          <a href="mailto:contato@primeforce.com.br" class="contact-method">
+            <div class="contact-method-icon">✉️</div>
+            <div class="contact-method-text">
+              <span class="contact-method-label">E-mail</span>
+              <span class="contact-method-val">contato@primeforce.com.br</span>
+            </div>
+          </a>
+          <a href="tel:+5500000000000" class="contact-method">
+            <div class="contact-method-icon">📞</div>
+            <div class="contact-method-text">
+              <span class="contact-method-label">Telefone / SAC</span>
+              <span class="contact-method-val">(00) 0000-0000</span>
+            </div>
+          </a>
+          <div class="contact-method" style="cursor:default;">
+            <div class="contact-method-icon">📍</div>
+            <div class="contact-method-text">
+              <span class="contact-method-label">Endereço</span>
+              <span class="contact-method-val">Juazeiro do Norte – CE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <h3>Fale com um <span class="gold">especialista</span></h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome *</label>
+            <input type="text" placeholder="Seu nome completo">
+          </div>
+          <div class="form-group">
+            <label>Empresa</label>
+            <input type="text" placeholder="Nome da empresa">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Telefone / WhatsApp *</label>
+            <input type="tel" placeholder="(00) 00000-0000">
+          </div>
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" placeholder="seu@email.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Serviço de interesse</label>
+          <select>
+            <option value="">Selecione um serviço</option>
+            <option>Segurança Patrimonial</option>
+            <option>Portaria e Controle de Acesso</option>
+            <option>Recepção Corporativa</option>
+            <option>Limpeza e Conservação</option>
+            <option>Apoio Operacional</option>
+            <option>Serviços Terceirizados</option>
+            <option>Pacote Integrado</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensagem</label>
+          <textarea placeholder="Descreva sua necessidade ou deixe seu melhor horário para contato…"></textarea>
+        </div>
+        <button class="form-submit" onclick="handleSubmit(event)">Enviar Mensagem ➔</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#hero" class="nav-logo" style="display:inline-flex; margin-bottom:16px;">
+          <svg viewBox="0 0 36 42" width="32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 10 L10 16 L18 10 L26 16 L30 10 L28 18 H8 Z" fill="#C9A84C"/>
+            <path d="M4 18 L4 30 Q4 38 18 42 Q32 38 32 30 L32 18 Z" fill="none" stroke="#C9A84C" stroke-width="2.5"/>
+            <text x="9" y="34" font-family="Arial" font-weight="900" font-size="13" fill="#C9A84C">PF</text>
+          </svg>
+          <div class="nav-logo-text" style="margin-left:10px;">
+            <div><span class="prime">PRIME </span><span class="force">FORCE</span></div>
+            <div class="sub">Serviços Integrados</div>
+          </div>
+        </a>
+        <p>Soluções integradas de segurança e serviços com excelência, comprometimento e confiança para proteger o que mais importa para você e seu negócio.</p>
+        <span class="tagline">Excelência · Segurança · Confiança</span>
+      </div>
+
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#servicos">Segurança Patrimonial</a></li>
+          <li><a href="#servicos">Portaria e Controle</a></li>
+          <li><a href="#servicos">Recepção Corporativa</a></li>
+          <li><a href="#servicos">Limpeza e Conservação</a></li>
+          <li><a href="#servicos">Apoio Operacional</a></li>
+          <li><a href="#servicos">Serviços Terceirizados</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#sobre">Quem Somos</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#contato">Fale Conosco</a></li>
+          <li><a href="#contato">Trabalhe Conosco</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 <span class="ft-gold">Prime Force Serviços Integrados</span>. Todos os direitos reservados.</p>
+      <p style="font-size:0.7rem; color:#555;">CNPJ: 00.000.000/0001-00</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ WHATSAPP FLOAT ══════════════════════════════════════════ -->
+<a href="https://wa.me/5500000000000" class="wa-float" target="_blank" title="Fale via WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submit handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target;
+    btn.textContent = '✔ Mensagem Enviada!';
+    btn.style.background = '#27ae60';
+    btn.style.color = 'white';
+    setTimeout(() => {
+      btn.textContent = 'Enviar Mensagem ➔';
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 3000);
+  }
+</script>
+</body>
+</html>
